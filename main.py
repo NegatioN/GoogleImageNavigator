@@ -45,7 +45,8 @@ related_image = ""
 
 incognito = True
 
-browser = b.get("google-chrome %s" + " --incognito" if incognito is True else "")
+browser = b.get()
+browser.args = "%s --incognito" if incognito else "%s"
 
 browser.open(base_url.format(query, related_image))
 
