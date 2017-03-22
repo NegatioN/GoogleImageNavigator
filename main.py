@@ -48,8 +48,9 @@ incognito = True
 browser = b.get()
 browser.args = "%s --incognito" if incognito else "%s"
 
-browser.open(base_url.format(query, related_image))
+#browser.open(base_url.format(query, related_image))
 
+#TODO fix logger.
 #TODO allow user to step back to their previous url?
 
 while True:
@@ -58,14 +59,21 @@ while True:
         query = "q=" + input()
     elif action == "n":  # no query param, empty space
         query = ""
+    elif action == "h":
+        print("q to write parameters, n to add no parameter at all, h for help")
     else:
         pass
-    img_dict = get_initial_images(base_url.format(query, related_image))
-    related_image = None
-    while related_image is None:
-        k, dv = list(img_dict.items())[random.randint(0, 10 if len(img_dict) > 10 else len(img_dict))]
-        related_image = get_rimg(dv['ou'], k)  # ou = original url
-    browser.open(base_url.format(query, related_image))
+    if action != "h":
+        img_dict = get_initial_images(base_url.format(query, related_image))
+        related_image = None
+        while related_image is None:
+            for k, dv in list(img_dict.items())[:5]:
+                related_image = get_rimg(dv['ou'], k)  # ou = original url
+                print(len(related_image) if related_image else "")
+            k, dv = list(img_dict.items())[random.randint(0, 10 if len(img_dict) > 10 else len(img_dict))]
+            related_image = get_rimg(dv['ou'], k)  # ou = original url
+        browser.open(base_url.format(query, related_image))
+        print("Opening page: {}".format(base_url.format(query, related_image)))
 
 
 # TODO show comparison of first search-word and new?
