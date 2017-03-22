@@ -13,11 +13,6 @@ user_agent_header = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10
 
 base_url = 'https://www.google.com/search?{}&tbm=isch&tbs={}'
 
-def build_new_url(resp):
-    # do request, find first tbs=rimg: thingy?
-    # reconstruct as base_url.format(currentQuery, new rimg)
-    pass
-
 matcher = re.compile(r'tbs=(.*)tbo', re.UNICODE)
 
 
@@ -48,43 +43,28 @@ def get_initial_images(ggl_img_url):
 query = "q=" + input()
 related_image = ""
 
-# TODO no query-param
-# TODO add incognito mode.
+incognito = True
 
-# TODO continue here
-b.open(base_url.format(query, related_image))
+browser = b.get("google-chrome %s" + " --incognito" if incognito is True else "")
+
+browser.open(base_url.format(query, related_image))
+
+#TODO allow user to step back to their previous url?
 
 while True:
     action = input()
-    if action == "q": # change query
+    if action == "q":  # change query
         query = "q=" + input()
-    elif action == "n": # no query param, empty space
+    elif action == "n":  # no query param, empty space
         query = ""
     else:
         pass
     img_dict = get_initial_images(base_url.format(query, related_image))
-    k, dv = list(img_dict.items())[random.randint(0, 10 if len(img_dict) > 10 else len(img_dict))]
-    related_image = get_rimg(dv['ou'], k)  # ou = original url
-    b.open(base_url.format(query, related_image))
+    related_image = None
+    while related_image is None:
+        k, dv = list(img_dict.items())[random.randint(0, 10 if len(img_dict) > 10 else len(img_dict))]
+        related_image = get_rimg(dv['ou'], k)  # ou = original url
+    browser.open(base_url.format(query, related_image))
 
-#resp = req.get(base_url.format(query, related_image), headers=user_agent_header)
-#html = resp.content
-#print(BeautifulSoup(html, 'lxml').prettify())
-#print(resp.url)
-# TODO get imgurl, imgdii
+
 # TODO show comparison of first search-word and new?
-imgurl = "https%3A%2F%2Fpjreddie.com%2Fmedia%2Fimage%2Fyologo_1.png"
-#imgrefurl = "https%3A%2F%2Fpjreddie.com%2Fdarknet%2Fyolo%2F"
-imgdii = "n4bqt5eyX0i8yM%3A"
-#get_rimg(imgurl, imgdii)
-
-# if prev_url, use prev_url and strip out query somehow?
-#prev_url = base_url.format("{}", related_image)
-
-#print(base_url.format("", related_image))
-
-#b.get(["Chrome", "%s", "--incognito"]).open(prev_url if prev_url != "" else base_url.format(query, related_image))
-#print(b.get().args)
-
-#b.open(prev_url if prev_url != "" else base_url.format(query, related_image))
-#b.open(prev_url if prev_url != "" else base_url.format("", related_image))
