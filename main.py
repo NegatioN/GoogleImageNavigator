@@ -1,3 +1,4 @@
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 import webbrowser as b
 from bs4 import BeautifulSoup
@@ -23,7 +24,7 @@ def get_rimg(imgurl, imgdii):
     html = res.text
     capture = matcher.search(html)
     output = capture.group()[4:-13] if capture is not None else None
-    print(output)
+    #print(output)
     return output
 
 def get_initial_images(ggl_img_url):
@@ -37,43 +38,48 @@ def get_initial_images(ggl_img_url):
             div_dicts[d['id']] = d
         except:
             pass
-    print(div_dicts)
+    #print(div_dicts)
     return div_dicts
 
-query = "q=" + input()
 related_image = ""
 
-incognito = True
-
+#browser = b.get("google-chrome %s --incognito")
 browser = b.get()
-browser.args = "%s --incognito" if incognito else "%s"
-
-#browser.open(base_url.format(query, related_image))
 
 #TODO fix logger.
 #TODO allow user to step back to their previous url?
 
+first_run = True
+prev_query = ""
+
 while True:
-    action = input()
-    if action == "q":  # change query
+    print("Input query, or leave it empty to navigate freely. (k to keep previous query)")
+    if first_run:
         query = "q=" + input()
-    elif action == "n":  # no query param, empty space
-        query = ""
-    elif action == "h":
-        print("q to write parameters, n to add no parameter at all, h for help")
+        num = "1"
     else:
-        pass
-    if action != "h":
-        img_dict = get_initial_images(base_url.format(query, related_image))
-        related_image = None
+        prev_query = query
+        query = input()
+        if query == "k":
+            query = prev_query
+        else:
+            query = "q=" + query if query != "" else query
+        print("For the direction you want to head in. (r for random)\nInput image number counting from left to right and then down")
+        num = input()
+    img_dict = get_initial_images(base_url.format(query, related_image))
+    related_image = None
+    if num.lower() != "r":
+        k, dv = list(img_dict.items())[int(num) - 1]
+    else:
         while related_image is None:
-            for k, dv in list(img_dict.items())[:5]:
-                related_image = get_rimg(dv['ou'], k)  # ou = original url
-                print(len(related_image) if related_image else "")
             k, dv = list(img_dict.items())[random.randint(0, 10 if len(img_dict) > 10 else len(img_dict))]
-            related_image = get_rimg(dv['ou'], k)  # ou = original url
+    related_image = get_rimg(dv['ou'], k)  # ou = original url
+    if related_image is None:
+        print("Found no direction, please try again")
+    else:
         browser.open(base_url.format(query, related_image))
         print("Opening page: {}".format(base_url.format(query, related_image)))
+        first_run = False
 
 
 # TODO show comparison of first search-word and new?
