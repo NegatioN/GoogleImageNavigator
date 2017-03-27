@@ -70,10 +70,11 @@ while True:
     related_image = None
     if num.lower() != "r":
         k, dv = list(img_dict.items())[int(num) - 1]
+        related_image = get_rimg(dv['ou'], k)  # ou = original url
     else:
         while related_image is None:
             k, dv = list(img_dict.items())[random.randint(0, 10 if len(img_dict) > 10 else len(img_dict))]
-    related_image = get_rimg(dv['ou'], k)  # ou = original url
+            related_image = get_rimg(dv['ou'], k)  # ou = original url
     if related_image is None:
         print("Found no direction, please try again")
     else:
