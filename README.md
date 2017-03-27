@@ -1,3 +1,15 @@
+## Examples
+By removing the constraint of the query-parameter, we sometimes get to apply filters or directions to our selection which doesn't match to where Google think it's taking us.
+
+![step1](https://raw.githubusercontent.com/NegatioN/GoogleImageNavigator/master/image-examples/step1.png)
+
+Here we're about ready to step into curly red haired girls.
+![step2](https://raw.githubusercontent.com/NegatioN/GoogleImageNavigator/master/image-examples/step2.png)
+
+Instead we end up seeing completely different images from what Google told us it would show, and we seem to have stepped into "curly hair"-space, where there are more asian girls for some reason.
+
+![step3](https://raw.githubusercontent.com/NegatioN/GoogleImageNavigator/master/image-examples/step3.png)
+
 ## Usage
 PS: only tested with python3
 
@@ -12,4 +24,4 @@ To select a specific image to choose as your direction, input it's position from
 
 Or you may input "r" to get a random direction, or selected image to move towards.
 
-By inputting an empty query (can't happen on the first call), you will move towards the filters or direction in an unconstrained matter. 
+By inputting an empty query (can't happen on the first call), you will move towards the filters or direction in an unconstrained matter.
