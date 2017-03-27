@@ -1,9 +1,18 @@
+## What is this?
+Just a fun CLI that lets you query for something, then re-adjust your queries to Google images afterwards, ever so slightly nudging you in the direction you want to go.
+
+Querying for very extreme words seem to have the biggest effect, and change your movement-vector the most.
+
+An example would be querying for "Nintendo 64", then later querying for "Zelda". This would after a few nudges show you Zelda themed Nintendo 64s, or Zelda on the N64.
+
+Another thing we can do, is remove the query-parameter altogether, which lets us move through the image-space of Google's similar images, based on the directions the related images point us. An example of this is shown below.
+
 ## Examples
 By removing the constraint of the query-parameter, we sometimes get to apply filters or directions to our selection which doesn't match to where Google think it's taking us.
 
 ![step1](https://raw.githubusercontent.com/NegatioN/GoogleImageNavigator/master/image-examples/step1.jpg)
 
-Here we're about ready to step into [curly red haired girls](https://www.google.no/search?q=&tbm=isch&tbs=rimg:CZVazid2KFhzIji5IaVxm1t0lDaR5IAK2GPL9gu6spes7r6OaaKi7Hr5T0guqXmnJBKYEyNC2wVEgLweUZ6LIIIoQioSCbkhpXGbW3SUEb6toiYTUexgKhIJNpHkgArYY8sRoL_13Zyt9gUYqEgn2C7qyl6zuvhHGyuW66GjQ7CoSCY5poqLsevlPEcRzkMIEwlBVKhIJSC6peackEpgR5bZ8Xgagg5gqEgkTI0LbBUSAvBGwmzGGxrP5SyoSCR5RnosggihCESXLQfVaN494&tbo=u&sa=X&ved=0ahUKEwiopruD5PfSAhXJDSwKHVD4AQ8Q9C8IGw#imgrc=kASjDbUXdlrxRM:).
+Here we're ready to step into [curly red haired girls](https://www.google.no/search?q=&tbm=isch&tbs=rimg:CZVazid2KFhzIji5IaVxm1t0lDaR5IAK2GPL9gu6spes7r6OaaKi7Hr5T0guqXmnJBKYEyNC2wVEgLweUZ6LIIIoQioSCbkhpXGbW3SUEb6toiYTUexgKhIJNpHkgArYY8sRoL_13Zyt9gUYqEgn2C7qyl6zuvhHGyuW66GjQ7CoSCY5poqLsevlPEcRzkMIEwlBVKhIJSC6peackEpgR5bZ8Xgagg5gqEgkTI0LbBUSAvBGwmzGGxrP5SyoSCR5RnosggihCESXLQfVaN494&tbo=u&sa=X&ved=0ahUKEwiopruD5PfSAhXJDSwKHVD4AQ8Q9C8IGw#imgrc=kASjDbUXdlrxRM:) by pressing the "View more"-button.
 
 ![step2](https://raw.githubusercontent.com/NegatioN/GoogleImageNavigator/master/image-examples/step2.jpg)
 
@@ -26,3 +35,9 @@ To select a specific image to choose as your direction, input it's position from
 Or you may input "r" to get a random direction, or selected image to move towards.
 
 By inputting an empty query (can't happen on the first call), you will move towards the filters or direction in an unconstrained matter.
+
+
+## Why did I make this?
+One of my hunches is that this could theoretically be used to bypass some of the content gating Google does of illegal images. However it seems like in practice, this is exceedingly difficult to do, since you are moving manually through an N-dimensional space. But it does seem like some of the ordinary blocking of content is disregarded.
+
+I reported this to Google, but I believe it was either too difficult to reproduce, or they simply know this is un-exploitable. :) But this tool was a lot of fun to just surf around with anyways, so I thought i'd share it.
