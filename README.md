@@ -24,6 +24,11 @@ Instead we end up seeing completely different images from what Google told us it
 
 ![step3](https://raw.githubusercontent.com/NegatioN/GoogleImageNavigator/master/image-examples/step3.jpg)
 
+## Why did I make this?
+One of my hunches is that this could theoretically be used to bypass some of the content gating Google does of illegal images. However it seems like in practice, this is exceedingly difficult to do, since you are moving manually through an N-dimensional space. But it does seem like some of the ordinary blocking of content is disregarded.
+
+I reported this to Google, but I believe it was either too difficult to reproduce, or they simply know this is un-exploitable. :) But this tool was a lot of fun to just surf around with anyways, so I thought i'd share it.
+
 ## Usage
 PS: only tested with python3
 
@@ -39,9 +44,3 @@ To select a specific image to choose as your direction, input it's position from
 Or you may input "r" to get a random direction, or selected image to move towards.
 
 By inputting an empty query (can't happen on the first call), you will move towards the filters or direction in an unconstrained matter.
-
-
-## Why did I make this?
-One of my hunches is that this could theoretically be used to bypass some of the content gating Google does of illegal images. However it seems like in practice, this is exceedingly difficult to do, since you are moving manually through an N-dimensional space. But it does seem like some of the ordinary blocking of content is disregarded.
-
-I reported this to Google, but I believe it was either too difficult to reproduce, or they simply know this is un-exploitable. :) But this tool was a lot of fun to just surf around with anyways, so I thought i'd share it.
