@@ -7,6 +7,10 @@ An example would be querying for "Nintendo 64", then later querying for "Zelda".
 
 Another thing we can do, is remove the query-parameter altogether, which lets us move through the image-space of Google's similar images, based on the directions the related images point us. An example of this is shown below.
 
+### How does Google Similar Images work?
+Seemingly, they rely on various filters (or directions towards other images in the space parhaps) to take you in a given direction from your current image. These are represented by the 8 images show to you (where the "View more"-button is) when you highlight an image.
+The direction you are taken in, is then constrained by the query-word you have given, so you won't stray into something completely off-topic. This query-parameter can't really be modified mid-search unless you re-forge the query-url manually with respect to the query, and rimg-tag.
+
 ## Examples
 By removing the constraint of the query-parameter, we sometimes get to apply filters or directions to our selection which doesn't match to where Google think it's taking us.
 
